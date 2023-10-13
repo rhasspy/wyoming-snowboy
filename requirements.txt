@@ -1,2 +1,2 @@
-snowboy @ https://github.com/Kitt-AI/snowboy/archive/v1.3.0.tar.gz
+snowboy==1.2.0b1  #  @ https://github.com/synesthesiam/prebuilt-apps/releases/download/v1.0/snowboy-1.3.0.tar.gz
 wyoming==1.2.0

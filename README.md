@@ -23,3 +23,20 @@ docker run -it -p 10400:10400 rhasspy/wyoming-snowboy
 [Train your own personal wake word](https://github.com/rhasspy/snowboy-seasalt)
 
 Use `--custom-model-dir <DIR>` to look for `*.pmdl` models in `<DIR>`
+
+
+## Manual Installation
+
+Install:
+
+``` sh
+git clone https://github.com/rhasspy/wyoming-snowboy.git
+cd wyoming-snowboy
+script/setup
+```
+
+Run:
+
+``` sh
+script/run --uri 'tcp://0.0.0.0:10400' --debug
+```

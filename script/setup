@@ -19,4 +19,11 @@ subprocess.check_call(pip + ["install", "--upgrade", "pip"])
 subprocess.check_call(pip + ["install", "--upgrade", "setuptools", "wheel"])
 
 # Install requirements
+subprocess.check_call(
+    pip
+    + [
+        "install",
+        "snowboy @ https://github.com/synesthesiam/prebuilt-apps/releases/download/v1.0/snowboy-1.3.0.tar.gz",
+    ]
+)
 subprocess.check_call(pip + ["install", "-r", str(_PROGRAM_DIR / "requirements.txt")])
