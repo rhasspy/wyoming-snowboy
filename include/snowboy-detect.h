@@ -100,7 +100,8 @@ class SnowboyDetect {
   void SetHighSensitivity(const std::string& high_sensitivity_str);
 
   // Returns the sensitivity string for the current hotwords.
-  std::string GetSensitivity() const;
+  // NOTE: Seems to be missing from aarch64 lib
+  // std::string GetSensitivity() const;
 
   // Applied a fixed gain to the input audio. In case you have a very weak
   // microphone, you can use this function to boost input audio level.
