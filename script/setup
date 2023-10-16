@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import shutil
 import subprocess
 import venv
 from pathlib import Path
@@ -6,7 +7,8 @@ from pathlib import Path
 _DIR = Path(__file__).parent
 _PROGRAM_DIR = _DIR.parent
 _VENV_DIR = _PROGRAM_DIR / ".venv"
-
+_BUILD_DIR = _DIR.parent / "build" / "lib" / "wyoming_snowboy"
+_MODULE_DIR = _PROGRAM_DIR / "wyoming_snowboy"
 
 # Create virtual environment
 builder = venv.EnvBuilder(with_pip=True)
@@ -19,11 +21,11 @@ subprocess.check_call(pip + ["install", "--upgrade", "pip"])
 subprocess.check_call(pip + ["install", "--upgrade", "setuptools", "wheel"])
 
 # Install requirements
-subprocess.check_call(
-    pip
-    + [
-        "install",
-        "snowboy @ https://github.com/synesthesiam/prebuilt-apps/releases/download/v1.0/snowboy-1.3.0.tar.gz",
-    ]
-)
 subprocess.check_call(pip + ["install", "-r", str(_PROGRAM_DIR / "requirements.txt")])
+
+# Build snowboy
+subprocess.check_call([context.env_exe, "setup.py", "build"], cwd=_PROGRAM_DIR)
+
+# Copy generated artifacts into module
+shutil.copy(_BUILD_DIR / "_snowboydetect.so", _MODULE_DIR)
+shutil.copy(_BUILD_DIR / "snowboydetect.py", _MODULE_DIR)

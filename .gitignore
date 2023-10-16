@@ -15,3 +15,11 @@ __pycache__/
 
 /dist/
 /local/
+
+# Generated during build
+/wyoming_snowboy/_snowboydetect.so
+/wyoming_snowboy/snowboydetect.py
+/swig/Python3/_snowboydetect.so
+/swig/Python3/snowboydetect.py
+/swig/Python3/snowboy-detect-swig.cc
+/swig/Python3/snowboy-detect-swig.o

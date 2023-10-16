@@ -9,12 +9,13 @@ from functools import partial
 from pathlib import Path
 from typing import Dict, Final, Optional
 
-from snowboy import snowboydecoder, snowboydetect
 from wyoming.audio import AudioChunk, AudioChunkConverter, AudioStart, AudioStop
 from wyoming.event import Event
 from wyoming.info import Attribution, Describe, Info, WakeModel, WakeProgram
 from wyoming.server import AsyncEventHandler, AsyncServer
 from wyoming.wake import Detect, Detection, NotDetected
+
+from . import snowboydetect
 
 _LOGGER = logging.getLogger()
 _DIR = Path(__file__).parent
@@ -106,7 +107,8 @@ class State:
         )
 
         detector = snowboydetect.SnowboyDetect(
-            snowboydecoder.RESOURCE_FILE.encode(), str(keyword.model_path).encode()
+            (self.args.data_dir / "common.res").encode(),
+            str(keyword.model_path).encode(),
         )
 
         detector.SetSensitivity(sensitivity_str.encode())

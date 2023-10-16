@@ -1,4 +1,5 @@
 [MESSAGES CONTROL]
+ignore=snowboydetect.py
 disable=
   format,
   abstract-method,
