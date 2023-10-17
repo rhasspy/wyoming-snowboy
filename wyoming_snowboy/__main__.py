@@ -107,7 +107,7 @@ class State:
         )
 
         detector = snowboydetect.SnowboyDetect(
-            (self.args.data_dir / "common.res").encode(),
+            str(self.args.data_dir / "common.res").encode(),
             str(keyword.model_path).encode(),
         )
 
