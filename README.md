@@ -27,6 +27,13 @@ Use `--custom-model-dir <DIR>` to look for `*.pmdl` models in `<DIR>`
 
 ## Manual Installation
 
+Dependencies:
+
+``` sh
+sudo apt-get update
+sudo apt-get install python3-dev build-essential swig libatlas-base-dev
+```
+
 Install:
 
 ``` sh
