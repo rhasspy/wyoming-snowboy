@@ -18,11 +18,14 @@ docker run -it -p 10400:10400 rhasspy/wyoming-snowboy
 [Source](https://github.com/rhasspy/wyoming-addons/tree/master/snowboy)
 
 
-## Custom Wake words
+## Custom Wake Words
 
-[Train your own personal wake word](https://github.com/rhasspy/snowboy-seasalt)
+There are two options for training your own wake word;
 
-Use `--custom-model-dir <DIR>` to look for `*.pmdl` models in `<DIR>`
+1. [Docker image with web interface](https://github.com/rhasspy/snowboy-seasalt)
+2. [snowman-enroll command-line](https://github.com/rhasspy/snowman-enroll/)
+
+Once your wake word is trained, add `--custom-model-dir <DIR>` to look for `*.pmdl` models in `<DIR>`
 
 
 ## Manual Installation
