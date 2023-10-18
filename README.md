@@ -20,7 +20,11 @@ docker run -it -p 10400:10400 rhasspy/wyoming-snowboy
 
 ## Custom Wake Words
 
-There are two options for training your own wake word;
+If you are using the add-on or Docker image, custom wake word training is built in. See the source documentation above for details.
+
+### Manual Wake Word Training
+
+There are two options for manually training your own wake word:
 
 1. [Docker image with web interface](https://github.com/rhasspy/snowboy-seasalt)
 2. [snowman-enroll command-line](https://github.com/rhasspy/snowman-enroll/)
