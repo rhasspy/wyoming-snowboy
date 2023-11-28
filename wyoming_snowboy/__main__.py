@@ -12,7 +12,7 @@ from typing import Dict, Final, Optional
 from wyoming.audio import AudioChunk, AudioChunkConverter, AudioStart, AudioStop
 from wyoming.event import Event
 from wyoming.info import Attribution, Describe, Info, WakeModel, WakeProgram
-from wyoming.server import AsyncEventHandler, AsyncServer
+from wyoming.server import AsyncEventHandler, AsyncServer, AsyncTcpServer
 from wyoming.wake import Detect, Detection, NotDetected
 
 from . import snowboydetect
@@ -138,6 +138,13 @@ async def main() -> None:
     parser.add_argument("--audio-gain", type=float, default=1.0)
     parser.add_argument("--apply-frontend", action="store_true")
     #
+    parser.add_argument(
+        "--zeroconf",
+        nargs="?",
+        const="snowboy",
+        help="Enable discovery over zeroconf with optional name (default: snowboy)",
+    )
+    #
     parser.add_argument("--debug", action="store_true", help="Log DEBUG messages")
     parser.add_argument(
         "--log-format", default=logging.BASIC_FORMAT, help="Format for log messages"
@@ -158,6 +165,18 @@ async def main() -> None:
 
     # Start server
     server = AsyncServer.from_uri(args.uri)
+
+    if args.zeroconf:
+        if not isinstance(server, AsyncTcpServer):
+            raise ValueError("Zeroconf requires tcp:// uri")
+
+        from wyoming.zeroconf import register_server
+
+        tcp_server: AsyncTcpServer = server
+        await register_server(
+            name=args.zeroconf, port=tcp_server.port, host=tcp_server.host
+        )
+        _LOGGER.debug("Zeroconf discovery enabled")
 
     try:
         await server.run(partial(SnowboyEventHandler, args, state))

@@ -61,6 +61,7 @@ setup(
         "wyoming_snowboy": [str(p.relative_to(module_dir)) for p in data_files]
     },
     install_requires=requirements,
+    extras_require={"zeroconf": ["zeroconf==0.88.0"]},
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
