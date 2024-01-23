@@ -1,6 +1,7 @@
 """Tests for wyoming-snowboy"""
 import asyncio
 import os
+import sys
 import wave
 from asyncio.subprocess import PIPE
 from pathlib import Path
@@ -12,21 +13,13 @@ from wyoming.info import Describe, Info
 from wyoming.wake import Detect, Detection, NotDetected
 
 _DIR = Path(__file__).parent
-_PROGRAM_DIR = _DIR.parent
-
-if "PYTHONPATH" in os.environ:
-    _PYTHON_PATH = os.pathsep.join([os.getenv("PYTHONPATH", ""), str(_PROGRAM_DIR)])
-else:
-    _PYTHON_PATH = str(_PROGRAM_DIR)
-
-_ENV = {**os.environ, "PYTHONPATH": _PYTHON_PATH}
 _SAMPLES_PER_CHUNK = 1024
 
 
 @pytest.mark.asyncio
 async def test_snowboy() -> None:
     proc = await asyncio.create_subprocess_exec(
-        "python3",
+        sys.executable,
         "-m",
         "wyoming_snowboy",
         "--uri",
@@ -34,7 +27,6 @@ async def test_snowboy() -> None:
         stdin=PIPE,
         stdout=PIPE,
         stderr=PIPE,
-        env=_ENV,
     )
     assert proc.stdin is not None
     assert proc.stdout is not None
