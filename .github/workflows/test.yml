@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: install dependencies
+        run: |
+          sudo apt-get install --yes swig libatlas-base-dev
       - name: setup
         run: |
           script/setup
