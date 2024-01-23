@@ -80,4 +80,7 @@ setup(
     ],
     keywords="rhasspy wyoming snowboy wake word",
     cmdclass={"build": SnowboyBuild},
+    entry_points={
+        "console_scripts": ["wyoming-snowboy = wyoming_snowboy.__main__:run"]
+    },
 )
