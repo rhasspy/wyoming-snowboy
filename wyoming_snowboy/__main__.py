@@ -15,7 +15,7 @@ from wyoming.info import Attribution, Describe, Info, WakeModel, WakeProgram
 from wyoming.server import AsyncEventHandler, AsyncServer, AsyncTcpServer
 from wyoming.wake import Detect, Detection, NotDetected
 
-from . import snowboydetect
+from . import __version__, snowboydetect
 
 _LOGGER = logging.getLogger()
 _DIR = Path(__file__).parent
@@ -149,12 +149,17 @@ async def main() -> None:
     parser.add_argument(
         "--log-format", default=logging.BASIC_FORMAT, help="Format for log messages"
     )
+    parser.add_argument("--version", action="store_true", help="Print version and exit")
 
     args = parser.parse_args()
     logging.basicConfig(
         level=logging.DEBUG if args.debug else logging.INFO, format=args.log_format
     )
     _LOGGER.debug(args)
+
+    if args.version:
+        print(__version__)
+        return
 
     args.data_dir = Path(args.data_dir)
     args.custom_model_dir = [Path(p) for p in args.custom_model_dir]
@@ -306,6 +311,7 @@ class SnowboyEventHandler(AsyncEventHandler):
                         name="Kitt.AI", url="https://github.com/Kitt-AI/snowboy"
                     ),
                     installed=True,
+                    version=__version__,
                     models=[
                         WakeModel(
                             name=kw.name,
@@ -316,6 +322,7 @@ class SnowboyEventHandler(AsyncEventHandler):
                             ),
                             installed=True,
                             languages=[],
+                            version="1.3.0",
                         )
                         for kw in keywords.values()
                     ],

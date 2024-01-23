@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import subprocess
 from pathlib import Path
+
 from distutils.command.build import build
 from distutils.dir_util import copy_tree
 
@@ -19,6 +20,10 @@ module_name = "wyoming_snowboy"
 module_dir = this_dir / module_name
 data_dir = module_dir / "data"
 data_files = list(data_dir.glob("*.umdl")) + [data_dir / "common.res"]
+
+version_path = module_dir / "VERSION"
+data_files.append(version_path)
+version = version_path.read_text(encoding="utf-8").strip()
 
 # -----------------------------------------------------------------------------
 
@@ -50,7 +55,7 @@ class SnowboyBuild(build):
 
 setup(
     name=module_name,
-    version="1.0.0",
+    version=version,
     description="Wyoming Server for Snowboy",
     url="http://github.com/rhasspy/wyoming-snowboy",
     author="Michael Hansen",
