@@ -1,6 +1,5 @@
 """Tests for wyoming-snowboy"""
 import asyncio
-import os
 import sys
 import wave
 from asyncio.subprocess import PIPE
