@@ -1,3 +1,4 @@
 include requirements.txt
 include wyoming_snowboy/data/*.umdl
 include wyoming_snowboy/data/common.res
+incluce wyoming_snowboy/VERSION
