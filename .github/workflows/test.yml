@@ -15,7 +15,7 @@ jobs:
           sudo apt-get install --yes swig libatlas-base-dev
       - name: setup
         run: |
-          script/setup
+          script/setup --dev
       - name: test
         run: |
           test $(script/run --version) = $(cat wyoming_snowboy/VERSION)

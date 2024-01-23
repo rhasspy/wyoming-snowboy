@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import argparse
 import shutil
 import subprocess
 import venv
@@ -9,6 +10,10 @@ _PROGRAM_DIR = _DIR.parent
 _VENV_DIR = _PROGRAM_DIR / ".venv"
 _BUILD_DIR = _DIR.parent / "build" / "lib" / "wyoming_snowboy"
 _MODULE_DIR = _PROGRAM_DIR / "wyoming_snowboy"
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--dev", action="store_true", help="Install dev requirements")
+args = parser.parse_args()
 
 # Create virtual environment
 builder = venv.EnvBuilder(with_pip=True)
@@ -29,3 +34,9 @@ subprocess.check_call([context.env_exe, "setup.py", "build"], cwd=_PROGRAM_DIR)
 # Copy generated artifacts into module
 shutil.copy(_BUILD_DIR / "_snowboydetect.so", _MODULE_DIR)
 shutil.copy(_BUILD_DIR / "snowboydetect.py", _MODULE_DIR)
+
+if args.dev:
+    # Install dev requirements
+    subprocess.check_call(
+        pip + ["install", "-r", str(_PROGRAM_DIR / "requirements_dev.txt")]
+    )
