@@ -62,9 +62,7 @@ setup(
     author_email="mike@rhasspy.org",
     license="MIT",
     packages=setuptools.find_packages(),
-    package_data={
-        "wyoming_snowboy": [str(p.relative_to(module_dir)) for p in data_files]
-    },
+    package_data={module_name: [str(p.relative_to(module_dir)) for p in data_files]},
     install_requires=requirements,
     extras_require={"zeroconf": ["zeroconf==0.88.0"]},
     classifiers=[
