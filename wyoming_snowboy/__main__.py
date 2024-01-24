@@ -334,7 +334,7 @@ class SnowboyEventHandler(AsyncEventHandler):
 # -----------------------------------------------------------------------------
 
 
-def run():
+def run() -> None:
     asyncio.run(main())
 
 
