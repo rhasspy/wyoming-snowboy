@@ -29,6 +29,9 @@ jobs:
           cache-dependency-path: requirements_dev.txt
       - run: script/setup --dev
       - run: |
+          .venv/bin/black wyoming_snowboy/snowboydetect.py
+          .venv/bin/isort wyoming_snowboy/snowboydetect.py
+      - run: |
           test $(script/run --version) = $(cat wyoming_snowboy/VERSION)
       - run: script/lint
       - run: script/test
