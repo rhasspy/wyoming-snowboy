@@ -19,6 +19,8 @@ jobs:
       matrix:
         python_version: ["3.9", "3.10", "3.11", "3.12"]
     steps:
+      - run: |
+          sudo apt-get install python3-dev build-essential swig libatlas-base-dev
       - uses: actions/checkout@v4.1.1
       - uses: actions/setup-python@v5
         with:
