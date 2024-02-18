@@ -1,4 +1,5 @@
 """Tests for wyoming-snowboy"""
+
 import asyncio
 import sys
 import wave
@@ -42,7 +43,9 @@ async def test_snowboy() -> None:
         assert len(info.wake) == 1, "Expected one wake service"
         wake = info.wake[0]
         assert len(wake.models) > 0, "Expected at least one model"
-        assert any(m.name == "snowboy" for m in wake.models), "Expected snowboy model"
+        snowboy_model = next((m for m in wake.models if m.name == "snowboy"), None)
+        assert snowboy_model is not None, "Expected snowboy model"
+        assert snowboy_model.phrase == "snowboy"
         break
 
     # We want to use the snowboy model

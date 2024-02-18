@@ -316,6 +316,7 @@ class SnowboyEventHandler(AsyncEventHandler):
                         WakeModel(
                             name=kw.name,
                             description=kw.name,
+                            phrase=kw.name,
                             attribution=Attribution(
                                 name="Kitt.AI",
                                 url="https://github.com/Kitt-AI/snowboy",

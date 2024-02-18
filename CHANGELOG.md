@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.0
+
+- Update to wyoming 1.5.3
+- Add wake word phrase
+
 ## 1.1.0
 
 - Update to wyoming 1.5.2
