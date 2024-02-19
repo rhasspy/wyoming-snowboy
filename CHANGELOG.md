@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.1
+
+- Use spaces in wake word phrase
+
 ## 1.2.0
 
 - Update to wyoming 1.5.3

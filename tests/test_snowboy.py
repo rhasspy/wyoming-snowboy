@@ -43,6 +43,16 @@ async def test_snowboy() -> None:
         assert len(info.wake) == 1, "Expected one wake service"
         wake = info.wake[0]
         assert len(wake.models) > 0, "Expected at least one model"
+        assert {m.phrase for m in wake.models} == {
+            "alexa",
+            "hey extreme",
+            "jarvis",
+            "neoya",
+            "smart mirror",
+            "snowboy",
+            "subex",
+            "view glass",
+        }
         snowboy_model = next((m for m in wake.models if m.name == "snowboy"), None)
         assert snowboy_model is not None, "Expected snowboy model"
         assert snowboy_model.phrase == "snowboy"
